@@ -1,0 +1,35 @@
+{% include 'header.html'%}
+
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 text-center mt-2>Détail de l'article</h1>
+                {% if article.image == "http://default"%}
+                <img
+                src="https://via.placeholder.com/400x250"
+                class="card-img-top"
+                alt="..."
+              />
+              {% else %}
+                <img
+                src="{{ article.image.url }}"
+                class="card-img-top"
+                alt="..."
+              />
+              {% endif %}
+                <h5>{{article.title}}</h5>
+                <p>
+                  {{article.description}}
+                </p>
+                <p>
+                  <small class="text-muted"> Publié il y'a {{article.create_at|timesince}}</small>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="mt-2">Les articles en relations</h3>
+            </div>
+        </div>
+    </div>
+
+  

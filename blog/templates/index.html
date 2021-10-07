@@ -1,3 +1,4 @@
+
 {% include 'header.html'%}
 {% include 'banner.html'%}
 <h1 class="text-center mt-3">Bienvenu sur notre blog </h1>
@@ -6,18 +7,31 @@
         {% for article in list_artcles %}
           <div class="col-12 col-md-6  col-lg-3 col-xl-3">
             <div class="card">
+              {% if article.image == "http://default"%}
+              <a href="{% url 'detail' article.id %} ">
                 <img
-                  src="{{ article.image.url }}"
-                  class="card-img-top"
-                  alt="..."
-                />
+                src="https://via.placeholder.com/400"
+                class="card-img-top"
+                alt="..."
+              />
+
+              {% else %}
+              <a href="{% url 'detail' article.id %} ">
+                <img
+                src="{{ article.image.url }}"
+                class="card-img-top"
+                alt="..."
+              />
+              {% endif %}
+
+              </a>
                 <div class="card-body" style="height: 240px;">
                   <h5 class="card-title">{{ article.title}}</h5>
                   <p class="card-text">
                     {{ article.description|truncatewords:8}}
                   </p>
-                  <p class="card-text"><small>Publié à {{article.create_at|timesince}}</small></p>
-                  <a href="#!" class="btn btn-primary">Button</a>
+                  <p class="card-text"><small>Publié il y'a {{article.create_at|timesince}}</small></p>
+                  <a href="{% url 'detail' article.id %}" class="btn btn-primary">Lire plus</a>
                 </div>
                 </div>
             </div>
@@ -25,5 +39,5 @@
         </div>
     </div>
 
-
+    {% include 'footer.html'%}
 
